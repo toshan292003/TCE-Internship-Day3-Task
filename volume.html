@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sphere</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            background-color: rgb(16, 15, 41);
+            font-weight: 500;
+            margin: 100px 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #circle {
+            opacity: 0%;
+            visibility: visible;
+            color: rgb(34, 34, 34);
+            background: linear-gradient(45deg, rgb(255, 133, 221), rgb(199, 139, 255));
+            border: 2px solid white;
+            box-shadow: 2px 2px 50px rgba(255, 255, 255, 0.2);
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 1s ease;
+        }
+
+        #text {
+            width: 75%;
+            text-align: center;
+        }
+
+        .box {
+            margin: 30px 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: space-evenly;
+        }
+
+        .spacing {
+            margin-left: 20px;
+        }
+
+        input,
+        button {
+            background-color: transparent;
+            border: 2px solid white;
+            border-radius: 5px;
+            color: white;
+            margin-bottom: 10px;
+            width: 200px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .5s ease;
+        }
+
+        button:hover {
+            background-color: white;
+            cursor: pointer;
+            color: black;
+        }
+
+        #table {
+            text-align: left;
+            background-color: transparent;
+            opacity: 0%;
+            transition: all 0.5s ease;
+        }
+
+        th {
+            padding-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+        <div class="box">
+            <h1 style="margin: 30px 0px;">
+                Volume Calculator
+            </h1>
+            <input type="number" placeholder="Enter radius of Circle" id="input" class="spacing">
+            <button onclick="volume()" class="spacing">Calculate volume</button>
+            <table id="table">
+                <tr>
+                    <th>Radius : </th>
+                    <th id="radius"></th>
+                </tr>
+                <tr>
+                    <th>Perimeter : &nbsp;</th>
+                    <th id="peri"></th>
+                </tr>
+                <tr>
+                    <th>Area : </th>
+                    <th id="area"></th>
+                </tr>
+                <tr>
+                    <th>Volume : </th>
+                    <th id="output"></th>
+                </tr>
+            </table>
+        </div>
+        <div id="circle">
+            <p id="text">
+                Circle
+            </p>
+        </div>
+    </div>
+</body>
+<script>
+    const pi = 3.14
+    let input = document.getElementById("input")
+    let vol = document.getElementById("output")
+    let rad = document.getElementById("radius")
+    let peri = document.getElementById("peri")
+    let ar = document.getElementById("area")
+    let box = document.getElementById("circle")
+    let text = document.getElementById("text")
+    let table = document.getElementById("table")
+
+    const volume = () => {
+        let r = input.value
+        if (r == 0) {
+            let string = "Please enter a number to proceed"
+            vol.innerHTML = string
+        }
+        else {
+            let volume = pi * 4 / 3 * r * r * r
+            let perimeter = 2 * pi * r
+            let area = pi * r * r
+            console.log(volume)
+            vol.innerHTML = volume
+            peri.innerHTML = perimeter
+            ar.innerHTML = area
+            rad.innerHTML = r
+            createcircle()
+            table.style.opacity = "100%"
+        }
+    }
+
+    const createcircle = () => {
+        box.style.opacity = "100%";
+        box.style.height = input.value + "em"
+
+        box.style.width = input.value + "em"
+        text.innerHTML = "Circle of Radius : " + input.value + "em"
+    }
+</script>
+
+</html>
